@@ -17,28 +17,36 @@ import { loginSchema } from "../../validations/user/login";
 import type { UserLogin, UserType } from "../../types/user";
 
 export const HomePage = () => {
-  const [typeUser, setTypeUser] = React.useState<UserType | undefined>(undefined);
+  const [typeUser, setTypeUser] = React.useState<UserType | undefined>(
+    undefined
+  );
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<UserLogin>({
     resolver: yupResolver(loginSchema),
   });
 
   const onSubmit: SubmitHandler<UserLogin> = (data) => {
-  const payload = {
-    ...data,
-    type: typeUser as UserType || "user",
-  };
-  console.log(payload);
-};
+    try {
+      const payload = {
+        ...data,
+        type: (typeUser as UserType) || "user",
+      };
+      console.log(payload);
 
+      reset();
+    } catch (error) {
+      console.error("Erro ao enviar o formulário:", error);
+    }
+  };
 
   return (
-    <div className="home-page-container">
-      <div className="home-page-content">
+    <div className="home-page-container container">
+      <div className="home-page-content content-center">
         <div className="home-page-apresentation-initial">
           <img
             src={city}
@@ -118,12 +126,13 @@ export const HomePage = () => {
               >
                 Voltar
               </button>
-            </div>  
+            </div>
 
             <p className="form-login-text">
               {typeUser === "user" ? (
                 <>
-                  Não tem uma conta? <a href="/register/user">Crie uma agora!</a>
+                  Não tem uma conta?{" "}
+                  <a href="/register/user">Crie uma agora!</a>
                 </>
               ) : (
                 <>
