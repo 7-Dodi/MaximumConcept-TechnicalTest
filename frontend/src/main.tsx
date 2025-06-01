@@ -7,6 +7,7 @@ import App from "./App.tsx";
 
 // **Pages
 import { HomePage } from "./pages/Home-Page/index.tsx";
+import { RegisterPage } from "./pages/Regsiter-Page/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/register/:type",
+        element: <RegisterPage />,
+      },
+      {
+        path: "*",
+        element: <h1>404</h1>,
       },
     ],
   },
