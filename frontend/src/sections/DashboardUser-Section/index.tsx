@@ -1,5 +1,6 @@
 // **Importações
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 // **Styles
 import "./style.css";
@@ -24,12 +25,13 @@ import type {
 // **Icons
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineUpdate } from "react-icons/md";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 // **Imagens
 import userIcon from "../../assets/user-icon.jpg";
 
 // **Mock
-import { mockServiceRequests } from "../../types/serviceRequest";
+import { mockServiceRequests } from "../../types/mocks/MocksData";
 
 export const DashboardUserSection = () => {
   // Estado dos filtros
@@ -44,6 +46,8 @@ export const DashboardUserSection = () => {
   const [visualDataServiceRequests, setVisualDataServiceRequests] =
     React.useState<ServiceRequest[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   // Função para limpar os filtros
   const clearAllFilters = () => {
@@ -124,7 +128,11 @@ export const DashboardUserSection = () => {
         <div className="dashboard-user-apresentation-header">
           <h1 className="apresentation-header-title">Painel de Usuário</h1>
 
-          <button className="apresentation-header-create-request">
+          <button
+            className="apresentation-header-create-request"
+            onClick={() => navigate("/create-service-request")}
+          >
+            <span><IoMdAddCircleOutline /></span>
             Nova solicitação
           </button>
         </div>
