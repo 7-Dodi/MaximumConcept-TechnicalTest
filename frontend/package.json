@@ -17,6 +17,7 @@
     "react-hook-form": "^7.56.4",
     "react-input-mask-next": "^3.0.0-alpha.12",
     "react-router-dom": "^7.6.1",
+    "react-spinners": "^0.17.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
