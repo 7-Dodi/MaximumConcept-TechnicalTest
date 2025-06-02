@@ -3,6 +3,7 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 // **Styles
 import "./style.css";
@@ -20,6 +21,8 @@ export const HomePage = () => {
   const [typeUser, setTypeUser] = React.useState<UserType | undefined>(
     undefined
   );
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -39,6 +42,7 @@ export const HomePage = () => {
       console.log(payload);
 
       reset();
+      navigate(`/dashboard/${typeUser}`);
     } catch (error) {
       console.error("Erro ao enviar o formulário:", error);
     }

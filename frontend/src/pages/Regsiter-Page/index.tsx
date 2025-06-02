@@ -49,6 +49,7 @@ export const RegisterPage = () => {
     console.log(payload);
 
     reset();
+    navigate(`/dashboard/${type}`);
     } catch (error) {
       console.error("Erro ao enviar o formulário:", error);
     }
