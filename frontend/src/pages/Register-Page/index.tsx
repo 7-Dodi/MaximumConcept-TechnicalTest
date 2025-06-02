@@ -132,7 +132,7 @@ export const RegisterPage = () => {
             </label>
 
             <div className="register-page-buttons">
-              <button className="register-page-button">Registrar</button>
+              <button type="submit" className="register-page-button">Registrar</button>
               <button className="register-page-button-cancel" onClick={() => navigate("/")}>Cancelar</button>
             </div>
           </div>
