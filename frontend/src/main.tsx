@@ -8,6 +8,7 @@ import App from "./App.tsx";
 // **Pages
 import { HomePage } from "./pages/Home-Page/index.tsx";
 import { RegisterPage } from "./pages/Regsiter-Page/index.tsx";
+import { DashboardPage } from "./pages/Dashboard-Page/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/register/:type",
         element: <RegisterPage />,
+      },
+      {
+        path: "/dashboard/:type",
+        element: <DashboardPage />,
       },
       {
         path: "*",

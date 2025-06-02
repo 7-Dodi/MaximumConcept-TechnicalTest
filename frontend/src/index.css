@@ -13,8 +13,12 @@
   --title-color-dark: hsl(var(--hue), var(--sat), 0%);
   --text-color: hsl(var(--hue), var(--sat), 46%);
   --body-color: #e4e4e4;
+  --select-color: #fafafa;
   --white-color: #fff;
   --button-color: #44b678;
+  --container-success-color: #d4f7e8;
+  --container-pedding-color: #f0f0f0;
+  --container-em-andamento-color: #bec5f8;
   --button-hover-color: #3b9e62;
   --primary-color: #04274c;
   --secundary-color: #4b07c9;
@@ -160,7 +164,9 @@ img {
 .form-login-button,
 .form-login-button-back,
 .register-page-button,
-.register-page-button-cancel {
+.register-page-button-cancel,
+.request-component-action-button,
+.request-component-action-button-cancel {
   width: auto;
   height: 2.5rem;
   padding: 0 1rem;
@@ -177,7 +183,8 @@ img {
 .apresentation-initial-button-user:hover,
 .form-login-button:hover,
 .form-login-button-back:hover,
-.register-page-button:hover {
+.register-page-button:hover,
+.request-component-action-button:hover {
   background-color: var(--button-hover-color);
 }
 
@@ -186,13 +193,15 @@ img {
   color: var(--white-color);
 }
 
-.register-page-button-cancel {
+.register-page-button-cancel,
+.request-component-action-button-cancel {
   background-color: var(--plugin-red);
   color: var(--white-color);
 }
 
 .form-login-button-back:hover,
-.register-page-button-cancel:hover {
+.register-page-button-cancel:hover,
+.request-component-action-button-cancel:hover {
   background-color: var(--dark-color);
 }
 
