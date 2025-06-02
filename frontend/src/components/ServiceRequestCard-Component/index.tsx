@@ -37,7 +37,7 @@ export const ServiceRequestCardComponent: React.FC<
         <p className="request-component-description">{serviceRequest.description}</p>
 
         <p className="resquest-component-requesting">
-          <strong>Solicitante:</strong> {serviceRequest.requesterName}
+          <strong>Solicitante:</strong> {serviceRequest.requester.name}
         </p>
 
         <p className="request-component-date">
