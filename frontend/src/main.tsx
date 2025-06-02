@@ -7,8 +7,9 @@ import App from "./App.tsx";
 
 // **Pages
 import { HomePage } from "./pages/Home-Page/index.tsx";
-import { RegisterPage } from "./pages/Regsiter-Page/index.tsx";
+import { RegisterPage } from "./pages/Register-Page/index.tsx";
 import { DashboardPage } from "./pages/Dashboard-Page/index.tsx";
+import { CreateServiceRequestPage } from "./pages/CreateServiceRequest-Page/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/:type",
         element: <DashboardPage />,
+      },
+      {
+        path: "/create-service-request",
+        element: <CreateServiceRequestPage />,
       },
       {
         path: "*",

@@ -166,7 +166,8 @@ img {
 .register-page-button,
 .register-page-button-cancel,
 .request-component-action-button,
-.request-component-action-button-cancel {
+.request-component-action-button-cancel,
+.create-service-form-button {
   width: auto;
   height: 2.5rem;
   padding: 0 1rem;
@@ -184,7 +185,8 @@ img {
 .form-login-button:hover,
 .form-login-button-back:hover,
 .register-page-button:hover,
-.request-component-action-button:hover {
+.request-component-action-button:hover,
+.create-service-form-button:hover {
   background-color: var(--button-hover-color);
 }
 
@@ -207,7 +209,8 @@ img {
 
 /*=============== FORMS ===============*/
 .form-login,
-.register-page-form {
+.register-page-form,
+.create-service-form {
   width: 80%;
   max-width: 400px;
   display: flex;
@@ -223,7 +226,8 @@ img {
 }
 
 .form-login-inputs,
-.register-page-form-inputs {
+.register-page-form-inputs,
+.create-service-form-inputs {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -232,7 +236,8 @@ img {
 }
 
 .form-login-label,
-.register-page-form-label {
+.register-page-form-label,
+.create-service-form-label {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -240,14 +245,16 @@ img {
 }
 
 .form-login-span,
-.register-page-form-span {
+.register-page-form-span,
+.create-service-form-span {
   color: var(--dark-color);
   font-size: var(--small-font-size);
   font-weight: bold;
 }
 
 .form-login-input,
-.register-page-form-input {
+.register-page-form-input,
+.create-service-form-input {
   width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
@@ -265,13 +272,15 @@ img {
 }
 
 .form-login-buttons,
-.register-page-buttons {
+.register-page-buttons,
+.create-service-form-buttons {
   display: flex;
   gap: 2rem;
 }
 
 .form-login-input:focus,
-.register-page-form-input:focus {
+.register-page-form-input:focus
+.create-service-form-input:focus {
   border-color: var(--button-color);
 }
 
