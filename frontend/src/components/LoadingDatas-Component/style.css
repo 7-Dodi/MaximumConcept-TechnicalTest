@@ -1,0 +1,43 @@
+/* Component */
+.loading-datas-component-container{
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Header */
+.loading-datas-component-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-datas-component-header h3 {
+  color: var(--button-color);
+  animation: fadeText 2s infinite ease-in-out;
+}
+
+@keyframes fadeText {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Content */
+.loading-datas-component-content{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
