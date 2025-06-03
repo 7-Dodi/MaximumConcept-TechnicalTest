@@ -1,0 +1,11 @@
+.defaultPage-title{
+    text-align: center;
+    color: var(--button-color);
+}
+
+.defaultPage-text{
+    text-align: center;
+    color: var(--dark-color);
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
