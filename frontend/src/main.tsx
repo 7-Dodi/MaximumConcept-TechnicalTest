@@ -10,6 +10,7 @@ import { HomePage } from "./pages/Home-Page/index.tsx";
 import { RegisterPage } from "./pages/Register-Page/index.tsx";
 import { DashboardPage } from "./pages/Dashboard-Page/index.tsx";
 import { CreateServiceRequestPage } from "./pages/CreateServiceRequest-Page/index.tsx";
+import { DefaultPage } from "./pages/Default-Page/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <h1>404</h1>,
+        element: <DefaultPage />,
       },
     ],
   },
