@@ -1,9 +1,9 @@
 // **Importações
-import * as React from "react";
 import { useParams } from "react-router-dom";
 
 // **Sections
 import { DashboardUserSection } from "../../sections/DashboardUser-Section";
+import { DashboardAdminSection } from "../../sections/DashboardAdmin-Section";
 
 export const DashboardPage = () => {
   const { type } = useParams<{ type: string }>();
@@ -13,12 +13,7 @@ export const DashboardPage = () => {
         {type === "user" ? (
           <DashboardUserSection />
         ) : (
-          <>
-            <h1 className="dashboard-page-title">Dashboard Admin</h1>
-            <p className="dashboard-page-description">
-              Bem-vindo ao painel de administração. Aqui você pode gerenciar usuários, visualizar relatórios e muito mais.
-            </p>
-          </>
+          <DashboardAdminSection/>
         )}
       </div>
     </div>
