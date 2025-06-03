@@ -214,8 +214,8 @@ export const DashboardUserSection = () => {
           </div>
         )}
         {!loading && visualDataServiceRequests.length === 0 && (
-          <div className="dashboard-user-requests-empty">
-            <p className="dashboard-user-requests-empty-message">
+          <div className="dashboard-requests-empty">
+            <p className="dashboard-requests-empty-message">
               Nenhuma solicitação encontrada
             </p>
           </div>
