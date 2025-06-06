@@ -13,5 +13,5 @@ export const loginSchema = yup.object().shape({
   password: yup
     .string()
     .required("O campo de senha é obrigatório.")
-    .min(3, "A senha deve ter pelo menos 3 caracteres."),
+    .min(6, "A senha deve ter pelo menos 6 caracteres."),
 });
