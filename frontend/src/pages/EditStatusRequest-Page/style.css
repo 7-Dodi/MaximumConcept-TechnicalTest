@@ -1,0 +1,63 @@
+/* Header */
+.edit-status-request-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem
+}
+
+.edit-status-request-header-title{
+    color: var(--button-color);
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.edit-status-request-header-subtitle{
+    width: 80%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.edit-status-request-header-apresentation{
+    margin-bottom: 0.5rem;
+}
+
+.edit-status-request-header-apresentation strong{
+    color: var(--button-color);
+}
+
+.edit-status-request-header-apresentation span{
+    color: var(--button-color);
+    font-style: italic;
+}
+
+/*Form*/
+.edit-status-request-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.edit-status-form{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+.edit-status-form-label{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
