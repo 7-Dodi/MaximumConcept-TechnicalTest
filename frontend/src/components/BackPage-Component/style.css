@@ -1,0 +1,56 @@
+.backPage{
+    position: absolute;
+    top: 5rem;
+    left: 10rem;
+    z-index: 1;
+    
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.backPage-Icon{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    box-shadow: 0px 0px 8px var(--popout-color);
+
+    color: var(--title-color-dark);
+    font-size: 18px;
+    font-weight: bold;
+    background-color: var(--white-color);
+    transition: all 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.backPage-Title{
+    color: var(--title-color-dark);
+    transition: all 0.3s ease;
+}
+
+.backPage:hover .backPage-Icon {
+    transform: scale(1.2); 
+}
+
+.backPage:hover .backPage-Title {
+    transform: scale(1.1);
+    color: var(--orange-color); 
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .backPage{
+        left: 1rem;
+    }
+
+    .backPage-Title{
+        display: none;
+    }
+}

@@ -1,0 +1,26 @@
+
+/* Content */
+.register-page-title span {
+    color: var(--button-color);
+    font-weight: bold;
+}
+
+.register-page-title,
+.register-page-text {
+    text-align: center;
+}
+
+.register-page-text{
+    margin-top: 0.6rem;
+}
+
+.register-page-text span {
+    color: var(--button-color);
+    font-weight: bold;
+}
+
+.register-page-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

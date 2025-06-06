@@ -1,0 +1,92 @@
+/* Container */
+.service-request-component-container {
+  width: 95%;
+  height: auto;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--select-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.container-concluido {
+  background: linear-gradient(
+    135deg,
+    var(--select-color) 60%,
+    var(--container-success-color) 100%
+  );
+}
+
+.container-em_andamento {
+  background: linear-gradient(
+    135deg,
+    var(--select-color) 60%,
+    var(--container-em-andamento-color) 100%
+  );
+}
+
+/*Header*/
+.request-component-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+
+.request-header-status{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.request-header-status span{
+  font-size: var(--normal-font-size);
+}
+
+.em_andamento{
+  color: var(--info-color);
+}
+
+.concluido{
+  color: var(--button-color);
+}
+
+/*Details*/
+.request-component-details{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0 2rem;
+}
+
+.resquest-component-requesting,
+.request-component-date,
+.request-component-address{
+  font-style: italic;
+}
+
+.resquest-component-requesting strong,
+.request-component-date strong,
+.request-component-address strong{
+  color: var(--dark-color);
+  font-weight: bold;
+  font-style: normal;
+}
+
+/*Actions*/
+.request-component-actions{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5rem 2rem;
+  gap: 1rem;
+}

@@ -1,68 +1,486 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --header-height: 3rem;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --hue: 0;
+  --sat: 0%;
+  --title-color: hsl(var(--hue), var(--sat), 20%);
+  --title-color-dark: hsl(var(--hue), var(--sat), 0%);
+  --text-color: hsl(var(--hue), var(--sat), 46%);
+  --body-color: #e4e4e4;
+  --select-color: #fafafa;
+  --white-color: #fff;
+  --button-color: #44b678;
+  --container-success-color: #d4f7e8;
+  --container-pedding-color: #f0f0f0;
+  --container-em-andamento-color: #bec5f8;
+  --button-hover-color: #3b9e62;
+  --primary-color: #04274c;
+  --secundary-color: #4b07c9;
+  --info-color: #97a2f1;
+  --dark-color: #1e1e1e;
+  --plugin-purple: #666ed2;
+  --plugin-yellow: #e5b821;
+  --plugin-cyan: #9adedf;
+  --plugin-red: #f35057;
+  --plugin-purpleDark: #98249a;
+  --plugin-green: #5bba5e;
+  --plugin-color: #6563ff;
+  --plugin-color-lite: #6663ff99;
+  --aqua-color: #57bfb5;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /*========== Font and typography ==========*/
+  --body-font: "Poppins", sans-serif;
+
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --big-font-size: 3.25rem;
+  --h1-font-size: 2.25rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+  --smaller-font-size: 0.813rem;
+  --tiny-font-size: 0.625rem;
+
+  /*========== Font weight ==========*/
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== Margenes Bottom ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Responsive typography */
+@media screen and (max-width: 992px) {
+  :root {
+    --big-font-size: 2.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+  }
 }
-a:hover {
-  color: #535bf2;
+
+/*=============== BASE ===============*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--body-color);
+  color: var(--text-color);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1,
+h2,
+h3 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: none;
+  outline: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABELES ===============*/
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  box-sizing: border-box;
+}
+
+.content-center {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.apresentation-initial-image {
+  width: 10rem;
+  margin-bottom: 2rem;
+  animation: floatWave 4s ease-in-out infinite;
+}
+
+/*=============== BUTTONS ===============*/
+.apresentation-initial-button-user,
+.form-login-button,
+.form-login-button-back,
+.register-page-button,
+.register-page-button-cancel,
+.request-component-action-button,
+.request-component-action-button-cancel,
+.create-service-form-button,
+.defaultPage-Button,
+.edit-status-form-button{
+  width: auto;
+  height: 2.5rem;
+  padding: 0 1rem;
+  margin: 1rem 0;
+  background-color: var(--button-color);
+  color: var(--white-color);
+  border-radius: 0.25rem;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apresentation-initial-button-user:hover,
+.form-login-button:hover,
+.form-login-button-back:hover,
+.register-page-button:hover,
+.request-component-action-button:hover,
+.create-service-form-button:hover,
+.defaultPage-Button:hover,
+.edit-status-form-button:hover{
+  background-color: var(--button-hover-color);
+}
+
+.form-login-button-back {
+  background-color: var(--text-color);
+  color: var(--white-color);
+}
+
+.register-page-button-cancel,
+.request-component-action-button-cancel {
+  background-color: var(--plugin-red);
+  color: var(--white-color);
+}
+
+.form-login-button-back:hover,
+.register-page-button-cancel:hover,
+.request-component-action-button-cancel:hover {
+  background-color: var(--dark-color);
+}
+
+/*=============== FORMS ===============*/
+.form-login,
+.register-page-form,
+.create-service-form,
+.edit-status-form {
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-login-title,
+.register-page-form-title {
+  color: var(--button-color);
+  margin-bottom: 1rem;
+}
+
+.form-login-inputs,
+.register-page-form-inputs,
+.create-service-form-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.form-login-label,
+.register-page-form-label,
+.create-service-form-label,
+.edit-status-form-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-login-span,
+.register-page-form-span,
+.create-service-form-span,
+.edit-status-form-span {
+  color: var(--dark-color);
+  font-size: var(--small-font-size);
+  font-weight: bold;
+}
+
+.form-login-input,
+.register-page-form-input,
+.create-service-form-input,
+.edit-status-form-select {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  outline: none;
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.form-error{
+  color: var(--plugin-red);
+  font-size: var(--small-font-size);
+  margin-top: 0.5rem;
+}
+
+.form-login-buttons,
+.register-page-buttons,
+.create-service-form-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.form-login-input:focus,
+.register-page-form-input:focus
+.create-service-form-input:focus
+.edit-status-form-select:focus {
+  border-color: var(--button-color);
+}
+
+/*=============== ANIMATIONS ===============*/
+@keyframes floatWave {
+  0% {
+    transform: translate(0, 0);
   }
-  a:hover {
-    color: #747bff;
+  25% {
+    transform: translate(5px, -5px);
   }
-  button {
-    background-color: #f9f9f9;
+  50% {
+    transform: translate(0, -10px);
   }
+  75% {
+    transform: translate(-5px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/*=============== DASHBOARD ===============*/
+/* Container */
+.dashboard-user-section-container,
+.dashboard-admin-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/*Apresentation*/
+.dashboard-user-section-apresentation,
+.dashboard-admin-section-apresentation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/*Header*/
+.dashboard-user-apresentation-header,
+.dashboard-admin-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+}
+
+/*Welcome*/
+.welcome-icon-image {
+  width: 3rem;
+  height: 3rem;
+  border: 0.01rem solid var(--dark-color);
+  border-radius: 50%;
+}
+
+.apresentation-welcome-name {
+  font-size: var(--normal-font-size);
+  font-weight: normal;
+  color: var(--dark-color);
+}
+
+.apresentation-welcome-name span {
+  font-weight: bold;
+  color: var(--button-color);
+}
+
+/*Area-Input*/
+.dashboard-user-area-input,
+.dashboard-admin-area-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 95%;
+  height: 3.5rem;
+  background-color: var(--white-color);
+  border-radius: 0.25rem;
+}
+
+.dashboard-user-input,
+.dashboard-admin-input {
+  width: 90%;
+  height: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  font-size: var(--normal-font-size);
+  color: var(--dark-color);
+}
+
+.dashboard-user-button-search,
+.dashboard-admin-button-search{
+  font-size: var(--h2-font-size);
+  color: var(--dark-color);
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.dashboard-user-button-search:hover,
+.dashboard-admin-button-search:hover {
+  color: var(--button-color);
+  transform: scale(1.1);
+}
+
+/*Filters*/
+.dashboard-user-filters,
+.dashboard-admin-filters {
+  align-self: flex-end;
+  padding-right: 2.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.dashboard-user-button-clear,
+.dashboard-admin-button-clear {
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.dashboard-user-button-clear:hover,
+.dashboard-admin-button-clear:hover {
+  color: var(--button-color);
+}
+
+/*Requests*/
+.dashboard-user-section-requests,
+.dashboard-admin-section-requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.section-requests-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  padding: 0 20px;
+}
+
+.section-requests-header-lasted-date {
+  font-size: var(--normal-font-size);
+  color: var(--dark-color);
+  font-style: italic;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.section-requests-header-lasted-date span {
+  font-weight: bold;
+  font-size: var(--h3-font-size);
+}
+
+.dashboard-user-requests-list,
+.dashboard-admin-requests-list {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  height: auto;
+  display: grid;
+  align-items: stretch; /* Estica os itens para a altura máxima da linha */
+  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1.5rem;
+}
+
+/*Resquest empty*/
+.dashboard-requests-empty{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  font-size: var(--normal-font-size);
 }
