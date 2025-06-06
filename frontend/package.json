@@ -11,13 +11,17 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@types/js-cookie": "^3.0.6",
+    "axios": "^1.9.0",
     "cpf-cnpj-validator": "^1.0.3",
+    "js-cookie": "^3.0.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.4",
     "react-input-mask-next": "^3.0.0-alpha.12",
     "react-router-dom": "^7.6.1",
     "react-spinners": "^0.17.0",
+    "react-toastify": "^11.0.5",
     "yup": "^1.6.1"
   },
   "devDependencies": {
