@@ -10,6 +10,7 @@ import { HomePage } from "./pages/Home-Page/index.tsx";
 import { RegisterPage } from "./pages/Register-Page/index.tsx";
 import { DashboardPage } from "./pages/Dashboard-Page/index.tsx";
 import { CreateServiceRequestPage } from "./pages/CreateServiceRequest-Page/index.tsx";
+import { EditStatusRequestPage } from "./pages/EditStatusRequest-Page/index.tsx";
 import { DefaultPage } from "./pages/Default-Page/index.tsx";
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/create-service-request",
         element: <CreateServiceRequestPage />,
+      },
+      {
+        path: "/edit-status-request/:id",
+        element: <EditStatusRequestPage />,
       },
       {
         path: "*",

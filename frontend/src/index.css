@@ -168,7 +168,8 @@ img {
 .request-component-action-button,
 .request-component-action-button-cancel,
 .create-service-form-button,
-.defaultPage-Button{
+.defaultPage-Button,
+.edit-status-form-button{
   width: auto;
   height: 2.5rem;
   padding: 0 1rem;
@@ -188,7 +189,8 @@ img {
 .register-page-button:hover,
 .request-component-action-button:hover,
 .create-service-form-button:hover,
-.defaultPage-Button:hover {
+.defaultPage-Button:hover,
+.edit-status-form-button:hover{
   background-color: var(--button-hover-color);
 }
 
@@ -212,7 +214,8 @@ img {
 /*=============== FORMS ===============*/
 .form-login,
 .register-page-form,
-.create-service-form {
+.create-service-form,
+.edit-status-form {
   width: 80%;
   max-width: 400px;
   display: flex;
@@ -239,7 +242,8 @@ img {
 
 .form-login-label,
 .register-page-form-label,
-.create-service-form-label {
+.create-service-form-label,
+.edit-status-form-label {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -248,7 +252,8 @@ img {
 
 .form-login-span,
 .register-page-form-span,
-.create-service-form-span {
+.create-service-form-span,
+.edit-status-form-span {
   color: var(--dark-color);
   font-size: var(--small-font-size);
   font-weight: bold;
@@ -256,7 +261,8 @@ img {
 
 .form-login-input,
 .register-page-form-input,
-.create-service-form-input {
+.create-service-form-input,
+.edit-status-form-select {
   width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
@@ -282,7 +288,8 @@ img {
 
 .form-login-input:focus,
 .register-page-form-input:focus
-.create-service-form-input:focus {
+.create-service-form-input:focus
+.edit-status-form-select:focus {
   border-color: var(--button-color);
 }
 
