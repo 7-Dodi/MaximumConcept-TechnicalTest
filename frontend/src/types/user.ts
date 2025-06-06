@@ -22,3 +22,5 @@ export interface UserLogin {
 }
 
 export type creteUser = Omit<User, "id" | "createdAt" | "updatedAt">;
+
+export type returnUser = Omit<User, "password" | "document" | "documentType">;
