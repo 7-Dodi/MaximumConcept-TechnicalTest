@@ -18,6 +18,9 @@ import { registerSchema } from "../../validations/user/create";
 // **Type
 import type { DocumentType, UserType } from "../../types/user";
 
+// **Contexto
+import { useUser } from "../../contexts/User-contexto";
+
 type RegisterForm = {
   name: string;
   document: string;
@@ -29,6 +32,8 @@ export const RegisterPage = () => {
   const { type } = useParams<{ type: UserType }>();
   const navigate = useNavigate();
 
+  const { createUser } = useUser();
+
   const {
     register,
     handleSubmit,
@@ -39,17 +44,18 @@ export const RegisterPage = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  const onSubmit: SubmitHandler<RegisterForm> = (data) => {
+  const onSubmit: SubmitHandler<RegisterForm> = async (data) => {
     try{
         const payload = {
       ...data,
       type: (type as UserType) || "user",
       documentType: typeDocument,
     };
-    console.log(payload);
+    
+    await createUser(payload);
 
     reset();
-    navigate(`/dashboard/${type}`);
+    //navigate(`/dashboard/${type}`);
     } catch (error) {
       console.error("Erro ao enviar o formulário:", error);
     }

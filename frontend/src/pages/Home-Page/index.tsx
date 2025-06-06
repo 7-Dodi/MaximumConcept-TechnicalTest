@@ -17,12 +17,16 @@ import { loginSchema } from "../../validations/user/login";
 // **Type
 import type { UserLogin, UserType } from "../../types/user";
 
+// **Contexto
+import { useAuth } from "../../contexts/Auth-context";
+
 export const HomePage = () => {
   const [typeUser, setTypeUser] = React.useState<UserType | undefined>(
     undefined
   );
 
   const navigate = useNavigate();
+  const { signIn } = useAuth();
 
   const {
     register,
@@ -33,13 +37,9 @@ export const HomePage = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit: SubmitHandler<UserLogin> = (data) => {
+  const onSubmit: SubmitHandler<UserLogin> = async (data) => {
     try {
-      const payload = {
-        ...data,
-        type: (typeUser as UserType) || "user",
-      };
-      console.log(payload);
+      await signIn(data);
 
       reset();
       navigate(`/dashboard/${typeUser}`);
