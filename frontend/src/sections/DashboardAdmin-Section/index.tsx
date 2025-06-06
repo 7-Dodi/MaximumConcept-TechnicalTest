@@ -1,6 +1,6 @@
 // **Importações
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // **Styles
 import "./style.css";
@@ -24,13 +24,22 @@ import type {
   RequestType,
   ServiceRequest,
 } from "../../types/serviceRequest";
+import type { User } from "../../types/user";
+import type { FiltersParameters } from "../../types/filtersParameters";
 
 // **Icons
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineLogout } from "react-icons/ai";
 
-// **Mock
-import { mockServiceRequests } from "../../types/mocks/MocksData";
+// **Utils
+import { formatDateTime } from "../../utils/formatDates";
+
+// **Contexto
+import { useUser } from "../../contexts/User-contexto";
+import { useAuth } from "../../contexts/Auth-context";
+
+// **ApiService
+import * as requestService from "../../services/request-service";
 import { MdOutlineUpdate } from "react-icons/md";
 
 export const DashboardAdminSection: React.FC = () => {
@@ -40,14 +49,17 @@ export const DashboardAdminSection: React.FC = () => {
   const [type, setType] = React.useState<RequestType | "">("");
   const [dateFilter, setDateFilter] = React.useState<string>("");
   const [clearFilters, setClearFilters] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   const [dataServiceRequests, setDataServiceRequests] = React.useState<
     ServiceRequest[]
   >([]);
   const [visualDataServiceRequests, setVisualDataServiceRequests] =
     React.useState<ServiceRequest[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [userData, setUserData] = React.useState<User | null>(null);
 
-  const navigate = useNavigate();
+  const { user } = useUser();
+  const { token, signOut } = useAuth();
 
   // Função para limpar os filtros
   const clearAllFilters = () => {
@@ -58,74 +70,99 @@ export const DashboardAdminSection: React.FC = () => {
 
   // Função para logar o usuário
   const handleLogout = () => {
-    navigate("/");
+    signOut();
+  };
+
+  // Função para remover solicitação
+  const handleRemoveRequest = async (id: string) => {
+    if (!token) return;
+
+    try {
+      await requestService.deleteServiceRequest(token, id);
+
+      // Atualiza os dados no estado (remove o item excluído)
+      setDataServiceRequests((prev) => prev.filter((req) => req.id !== id));
+      setVisualDataServiceRequests((prev) =>
+        prev.filter((req) => req.id !== id)
+      );
+      toast.success("Solicitação removida com sucesso.");
+    } catch {
+      toast.error("Erro ao remover a solicitação.");
+    }
   };
 
   // Efeito para atualizar as solicitações com base nos filtros
   React.useEffect(() => {
-    setClearFilters(status !== "" || type !== "" || dateFilter !== "");
-    let filteredRequests = [...dataServiceRequests];
-    setLoading(true);
+    const fetchFilteredRequests = async () => {
+      if (!user || !token) return;
 
-    if (searchTerm.trim() !== "") {
-      const term = searchTerm.toLowerCase();
-      filteredRequests = filteredRequests.filter((request) =>
-        request.type.toLowerCase().includes(term)
-      );
-    }
+      try {
+        setLoading(true);
+        setUserData(user);
 
-    if (status) {
-      filteredRequests = filteredRequests.filter(
-        (request) => request.status === status
-      );
-    }
+        // Monta os filtros para envio ao backend
+        const params: FiltersParameters = {};
+        const now = new Date();
 
-    if (type) {
-      filteredRequests = filteredRequests.filter(
-        (request) => request.type === type
-      );
-    }
+        if (status) params.status = status;
+        if (type) params.type = type;
 
-    if (dateFilter) {
-      const now = new Date();
+        if (dateFilter) {
+          let targetDate: Date | null = null;
 
-      filteredRequests = filteredRequests.filter((request) => {
-        const created = new Date(request.createdAt);
-        const diffInDays = Math.floor(
-          (now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24)
+          switch (dateFilter) {
+            case "hoje":
+              targetDate = new Date();
+              break;
+            case "ontem":
+              targetDate = new Date();
+              targetDate.setDate(now.getDate() - 1);
+              break;
+            case "semana_passada":
+              targetDate = new Date();
+              targetDate.setDate(now.getDate() - 7);
+              break;
+            case "mes_passado":
+              targetDate = new Date();
+              targetDate.setMonth(now.getMonth() - 1);
+              break;
+            case "ano_passado":
+              targetDate = new Date();
+              targetDate.setFullYear(now.getFullYear() - 1);
+              break;
+          }
+
+          if (targetDate) {
+            params.date = targetDate.toISOString();
+          }
+        }
+
+        const response = await requestService.getAllServiceRequests(
+          token,
+          params
         );
 
-        switch (dateFilter) {
-          case "hoje":
-            return created.toDateString() === now.toDateString();
-          case "ontem": {
-            const yesterday = new Date(now);
-            yesterday.setDate(now.getDate() - 1);
-            return created.toDateString() === yesterday.toDateString();
-          }
-          case "semana_passada":
-            return diffInDays <= 7;
-          case "mes_passado":
-            return diffInDays <= 30;
-          case "ano_passado":
-            return created.getFullYear() === now.getFullYear() - 1;
-          default:
-            return true;
+        // Aplicar o searchTerm localmente
+        let filteredData = response;
+        if (searchTerm.trim() !== "") {
+          const term = searchTerm.toLowerCase();
+          filteredData = response.filter((request) =>
+            request.type.toLowerCase().includes(term)
+          );
         }
-      });
-    }
 
-    setVisualDataServiceRequests(filteredRequests);
-    setLoading(false);
-  }, [status, type, dateFilter, dataServiceRequests, searchTerm]);
+        setDataServiceRequests(response); // mantém o "cache" geral
+        setVisualDataServiceRequests(filteredData);
+      } catch {
+        toast.error("Erro ao buscar solicitações!");
+      } finally {
+        setClearFilters(status !== "" || type !== "" || dateFilter !== "");
+        setLoading(false);
+      }
+    };
 
-  // Simulação de busca de solicitações com base nos filtros
-  React.useEffect(() => {
-    setLoading(true);
-    setDataServiceRequests(mockServiceRequests);
-    setVisualDataServiceRequests(mockServiceRequests);
-    setLoading(false);
-  }, []);
+    fetchFilteredRequests();
+  }, [user, token, status, type, dateFilter, searchTerm]);
 
   return (
     <section className="dashboard-admin-section-container">
@@ -143,12 +180,17 @@ export const DashboardAdminSection: React.FC = () => {
                 className="welcome-icon-image"
               />
               <h4 className="apresentation-welcome-name">
-                Bem vindo(a), <b>Debóra</b>! <span>;)</span>
+                Bem vindo(a), <b>{userData?.name}</b>! <span>;)</span>
               </h4>
             </div>
 
-            <button className="dashboard-admin-button-logout" onClick={handleLogout}>
-              <span><AiOutlineLogout /></span>
+            <button
+              className="dashboard-admin-button-logout"
+              onClick={handleLogout}
+            >
+              <span>
+                <AiOutlineLogout />
+              </span>
               Sair
             </button>
           </div>
@@ -200,12 +242,18 @@ export const DashboardAdminSection: React.FC = () => {
         <div className="section-requests-header">
           <h2 className="section-requests-header-title">Solicitações</h2>
 
-          <p className="section-requests-header-lasted-date">
-            <span>
-              <MdOutlineUpdate />
-            </span>
-            Atualizado às: 00:00, de 00/00/0000
-          </p>
+          {dataServiceRequests.length !== 0 && (
+            <p className="section-requests-header-lasted-date">
+              <span>
+                <MdOutlineUpdate />
+              </span>
+              {formatDateTime(
+                new Date(
+                  dataServiceRequests[dataServiceRequests.length - 1].updatedAt
+                )
+              )}
+            </p>
+          )}
         </div>
 
         {loading && <LoadingDatasComponent />}
@@ -215,6 +263,7 @@ export const DashboardAdminSection: React.FC = () => {
               <ServiceRequestCardComponent
                 key={request.id}
                 serviceRequest={request}
+                onRemove={handleRemoveRequest}
               />
             ))}
           </div>
