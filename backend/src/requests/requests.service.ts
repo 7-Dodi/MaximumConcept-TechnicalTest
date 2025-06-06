@@ -101,6 +101,13 @@ export class RequestsService {
       );
     }
 
+    if (requestFound.status !== RequestStatus.PENDENTE) {
+      throw new HttpException(
+        `Request with ${id} cannot be deleted`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     if (
       requesterType !== UserType.ADMIN &&
       requestFound.requester !== requester
