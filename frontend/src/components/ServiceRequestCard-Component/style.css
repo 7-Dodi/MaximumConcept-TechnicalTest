@@ -68,12 +68,14 @@
 }
 
 .resquest-component-requesting,
-.request-component-date{
+.request-component-date,
+.request-component-address{
   font-style: italic;
 }
 
 .resquest-component-requesting strong,
-.request-component-date strong{
+.request-component-date strong,
+.request-component-address strong{
   color: var(--dark-color);
   font-weight: bold;
   font-style: normal;
@@ -85,6 +87,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 2rem;
+  padding: 0.5rem 2rem;
   gap: 1rem;
 }
